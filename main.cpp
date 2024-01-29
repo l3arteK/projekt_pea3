@@ -19,6 +19,7 @@ int main(){
     string fileName="";
     int max_time, pop_size;
     float crossRate, mutationRate;
+    bool wczytany = false;
     srand(time(NULL));
     do{
         cout<<"Actually loaded file: "<<fileName<<endl;
@@ -31,17 +32,18 @@ int main(){
                 cout<<"1. .atsp"<<endl;
                 cout<<"2. .txt"<<endl;
                 option = _getche();
+                do{
                 cout<<"\nEnter filename: ";
-                    cin>>fileName;
-                    if(option == '1')
-                        if(!matrix.readFromFile(fileName)){
-                            continue;
+                cin>>fileName;
+                    if(option == '1'){
+                        if(matrix.readFromFile(fileName))
+                            wczytany = true;
                     }
-                    if(option == '2')
-                        if(!matrix.readFromFile2(fileName)){
-                            continue;
-                    }
+                    else
+                        if(matrix.readFromFile2(fileName))
+                            wczytany = true;
 
+                }while(!wczytany);
                 matrix.show();
                 break;
             case '2':
@@ -56,6 +58,7 @@ int main(){
                 geneticAlgorithm gen = geneticAlgorithm(matrix,pop_size,crossRate,mutationRate, max_time);
                 cout<<"Result orderCross: "<<gen.start(0)<<endl;
                 cout<<"Result partiallyCross: "<<gen.start(1)<<endl;
+
             break;
         }
         }while(option!='0');

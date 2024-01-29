@@ -14,11 +14,12 @@ class geneticAlgorithm{
     
         int calculatePath(int *path);
         void orderCrossover(int *parent1, int *parent2);
-        void partiallyCrossover(int *parent1, int * parent2);
+        void partiallyCrossover(int *parent1, int *parent2);
     public:
 
         geneticAlgorithm(Matrix matrix,int population, float crossRate, float mutationRate, int time);
         int start(int choose);
+      
 
         
         
