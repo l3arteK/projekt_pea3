@@ -9,6 +9,7 @@ geneticAlgorithm::geneticAlgorithm(Matrix matrix,int population, float crossRate
     this->populationSize = population;
     this->crossRate = crossRate;
     this->mutationRate = mutationRate;
+    best_path = new int[size];
 }
 int geneticAlgorithm::calculatePath(int *path){
     int result = 0;
@@ -238,6 +239,7 @@ int geneticAlgorithm::start(int choose){
     for(int i = 0; i < populationSize; i++){
         if(fitness[i] < result)
         result = fitness[i];
+        copyTab(best_path,population[i]);
     }
 
     for(int i = 0;i<populationSize;i++){
@@ -273,4 +275,14 @@ int * geneticAlgorithm::random_permutation(){
         }
     }
     return tab;
+}
+geneticAlgorithm::geneticAlgorithm(){
+    
+}
+void geneticAlgorithm::best_result(){
+    for(int i = 0;i<size;i++){
+        std::cout<<best_path[i]<<" ";
+    }
+    std::cout<<best_path[0];
+    std::cout<<std::endl;
 }
